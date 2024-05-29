@@ -34,6 +34,22 @@ class HomeViewModel : ViewModel() {
         }
     }
 
+    //查询所有政策信息
+    fun policyListFun() {
+        viewModelScope.launch {
+            try {
+//                val list:List<String> = listOf("综合")
+                val result: Results<List<Map<String, Any>>> =
+                    PolicyNetwork.policyListNet(form.value.checkList,form.value.input)
+                policyList.value = result.data
+                Log.d("LhwPolicyList", form.value.checkList.toString()+form.value.input)
+            } catch (e: Exception) {
+                Log.e("LhwPolicyList","${e.message}")
+                e.printStackTrace()
+            }
+        }
+    }
+
     fun onInputChange(str: String) {
         form.value = form.value.copy(
             input = str

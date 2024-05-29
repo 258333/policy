@@ -13,6 +13,9 @@ object PolicyNetwork {
 
     suspend fun typeListNet() = policyService.typeListService().await()
 
+    suspend fun policyListNet(checkList: List<String>, input: String) =
+        policyService.policyListService(checkList, input).await()
+
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {
