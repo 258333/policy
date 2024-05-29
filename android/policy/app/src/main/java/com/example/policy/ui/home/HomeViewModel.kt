@@ -4,25 +4,26 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.policy.logic.creator.PolicyNetwork
 import com.example.policy.logic.model.Results
-import com.example.policy.logic.model.Type
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
     //保存查询到的所有类别
-    val typeList = mutableStateOf(emptyList<Type>())
+    val typeList = mutableStateOf(emptyList<Map<String, Any>>())
 
     //搜索表单
     val form = mutableStateOf(SearchForm())
+
+    //保存查询到的所有政策信息
+    val policyList = mutableStateOf(emptyList<Map<String, Any>>())
 
     //查询所有的类别信息
     fun typeListFun() {
         viewModelScope.launch {
             try {
-                val result: Results<List<Type>> = PolicyNetwork.typeListNet()
+                val result: Results<List<Map<String, Any>>> = PolicyNetwork.typeListNet()
                 typeList.value = result.data
                 Log.d("Lhwtype", result.data.toString())
 //                Log.d("Lhw",)
@@ -39,13 +40,20 @@ class HomeViewModel : ViewModel() {
         )
     }
 
+    fun onCheckChange(str: String, isChecked: Boolean) {
+        form.value = form.value.copy(
+            checkList = if (isChecked) {
+                form.value.checkList + str
+            } else {
+                form.value.checkList - str
+            }
+        )
+        Log.d("lhw", form.value.checkList.toString())
+    }
 }
 
 //搜索表单
 data class SearchForm(
     val input: String = "",
-    val name: String? = null,
-    val document: String? = null,
-    val organ: String? = null,
-    val text: String? = null
+    val checkList: List<String> = emptyList()
 )

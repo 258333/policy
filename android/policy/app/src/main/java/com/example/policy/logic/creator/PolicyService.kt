@@ -1,15 +1,20 @@
 package com.example.policy.logic.creator
 
 import com.example.policy.logic.model.Results
-import com.example.policy.logic.model.Type
 import retrofit2.Call
+import retrofit2.http.Body
+import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface PolicyService {
     @POST("policy")
-    fun policyListService(): Call<Results<Int>>
+    fun policyListService(
+        @Body checkList: List<String>,
+        @Field("input") input: String
+    ): Call<Results<List<Map<String, Any>>>>
 
     @GET("policy")
-    fun typeListService(): Call<Results<List<Type>>>
+    fun typeListService(): Call<Results<List<Map<String, Any>>>>
 }
