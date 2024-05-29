@@ -16,4 +16,5 @@ public interface PolicyMapper {
     //查询所有政策类型和总数
     @Select("SELECT DISTINCT type, COUNT(*) AS num FROM policy GROUP BY type")
     List<Map<String, Object>> typeList();
+
 }

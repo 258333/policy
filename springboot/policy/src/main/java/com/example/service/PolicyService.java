@@ -12,5 +12,5 @@ public interface PolicyService {
                           String document,String organ,String text, List<String> checkList);
 
     //查询所有政策类型和总数
-    List<Map<String,Object>> typeList();
+    List<Map<String, Object>> typeList();
 }

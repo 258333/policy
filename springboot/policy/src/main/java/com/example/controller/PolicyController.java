@@ -1,9 +1,7 @@
 package com.example.controller;
 
-import com.example.pojo.PageBean;
-import com.example.pojo.Params;
-import com.example.pojo.Policy;
-import com.example.pojo.Result;
+import com.example.mapper.PolicyMapper;
+import com.example.pojo.*;
 import com.example.service.PolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +15,13 @@ import java.util.Map;
 public class PolicyController {
     @Autowired
     private PolicyService policyService;
+    @Autowired
+    private PolicyMapper policyMapper;
 
     //分页查询政策列表
     @PostMapping
     public Result<PageBean<Policy>> list(
-        @RequestBody Params params
+            @RequestBody Params params
     ) {
         Integer pageNum = params.getPageNum();
         Integer pageSize = params.getPageSize();
@@ -32,16 +32,35 @@ public class PolicyController {
         List<String> checkList = params.getCheckList();
 
         System.out.println(params);
-        System.out.println(pageNum+ " " + pageSize + " " + name + " " + document + " " + organ + " " + text + " " + checkList);
-        
+        System.out.println(pageNum + " " + pageSize + " " + name + " " + document + " " + organ + " " + text + " " + checkList);
+
         PageBean<Policy> pb = policyService.list(pageNum, pageSize, name, document, organ, text, checkList);
         return Result.success(pb);
     }
 
+    @PostMapping("android")
+    public Result<List<Policy>> policyList(
+            @RequestParam(value = "checkList",required = false) List<String> checkList,
+            @RequestParam(value = "input",required = false) String input
+    ) {
+
+        String flag = null;
+        if(checkList != null) {
+            for (String check : checkList) {
+                if (check.equals("无类型")) {
+                    System.out.println("check为空");
+                    flag = "null";
+                    break;
+                }
+            }
+        }
+        List<Policy> goods = policyMapper.list(input, null, null, null, checkList, flag);
+        return Result.success(goods);
+    }
 
     //查询所所有政策类型和总数
     @GetMapping
-    public Result<List<Map<String,Object>>> typeList() {
+    public Result<List<Map<String, Object>>> typeList() {
         return Result.success(policyService.typeList());
     }
 }
