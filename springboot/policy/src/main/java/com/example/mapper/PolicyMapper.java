@@ -17,4 +17,5 @@ public interface PolicyMapper {
     @Select("SELECT DISTINCT type, COUNT(*) AS num FROM policy GROUP BY type")
     List<Map<String, Object>> typeList();
 
+    List<Policy> listOr(String name, String document, String organ, String text, List<String> checkList, String flag);
 }

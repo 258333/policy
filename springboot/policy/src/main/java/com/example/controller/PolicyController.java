@@ -30,22 +30,28 @@ public class PolicyController {
         String organ = params.getOrgan();
         String text = params.getText();
         List<String> checkList = params.getCheckList();
+        String optionValue = params.getOptionValue();
 
         System.out.println(params);
-        System.out.println(pageNum + " " + pageSize + " " + name + " " + document + " " + organ + " " + text + " " + checkList);
+        System.out.println(pageNum + " " + pageSize + " " + name + " " + document + " " + organ + " " + text + " " + checkList + " " + optionValue);
 
-        PageBean<Policy> pb = policyService.list(pageNum, pageSize, name, document, organ, text, checkList);
+        if (name.isEmpty()) name = null;
+        if (document.isEmpty()) document = null;
+        if (organ.isEmpty()) organ = null;
+        if(text.isEmpty()) text = null;
+
+        PageBean<Policy> pb = policyService.list(pageNum, pageSize, name, document, organ, text, checkList, optionValue);
         return Result.success(pb);
     }
 
     @PostMapping("android")
     public Result<List<Policy>> policyList(
-            @RequestParam(value = "checkList",required = false) List<String> checkList,
-            @RequestParam(value = "input",required = false) String input
+            @RequestParam(value = "checkList", required = false) List<String> checkList,
+            @RequestParam(value = "input", required = false) String input
     ) {
 
         String flag = null;
-        if(checkList != null) {
+        if (checkList != null) {
             for (String check : checkList) {
                 if (check.equals("无类型")) {
                     System.out.println("check为空");
@@ -62,5 +68,11 @@ public class PolicyController {
     @GetMapping
     public Result<List<Map<String, Object>>> typeList() {
         return Result.success(policyService.typeList());
+    }
+
+    //二次检索
+    @GetMapping("{second}")
+    public Result policyListSeconde(@PathVariable String second){
+        return Result.success(policyService.listSecond(second));
     }
 }

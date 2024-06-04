@@ -13,4 +13,5 @@ public class Params {
     private String organ;
     private String text;
     private List<String> checkList;
+    private String optionValue;
 }

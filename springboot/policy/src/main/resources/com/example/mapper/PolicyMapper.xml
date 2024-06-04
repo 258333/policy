@@ -42,4 +42,42 @@
     </select>
 
 
+    <select id="listOr" resultType="com.example.pojo.Policy">
+        SELECT * FROM policy
+        <where>
+
+            <if test="name != null">
+                name LIKE CONCAT('%' ,#{name}, '%')
+            </if>
+            <if test="document != null">
+                OR document LIKE CONCAT('%',#{document},'%')
+            </if>
+            <if test="text != null">
+                OR text LIKE CONCAT('%',#{text},'%')
+            </if>
+            <if test="organ != null">
+                OR organ LIKE CONCAT('%',#{organ},'%')
+            </if>
+
+            <if test="checkList != null and checkList.size() > 0">
+                OR (
+                type IN
+                <foreach collection="checkList" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+                <choose>
+                    <when test="flag != null">
+                        OR type IS NULL
+                        )
+                    </when>
+                    <otherwise>
+                        )
+                    </otherwise>
+                </choose>
+            </if>
+
+        </where>
+    </select>
+
+
 </mapper>
