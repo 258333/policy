@@ -10,3 +10,8 @@ export const policyListService = (params) => {
 export const typeListService = () => {
     return request.get('/policy');
 }
+
+//二次检索
+export const policyListSecondService = (second) => {
+    return request.get('/policy/' + second)
+}

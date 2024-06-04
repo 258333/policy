@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
-import { policyListService, typeListService } from '@/api/policy';
+import { policyListService, typeListService, policyListSecondService } from '@/api/policy';
 import { usePolicyStore } from '@/stores/policy';
 import { useRouter } from 'vue-router'
 
@@ -55,10 +55,11 @@ let polices = ref([
 
 //搜索表单模型
 let search = ref({
-    name: null,
-    document: null,
-    organ: null,
-    text: null
+    name: "",
+    document: "",
+    organ: "",
+    text: "",
+    second: "",
 })
 
 //分页条数据模型
@@ -69,7 +70,22 @@ const pageSize = ref(10)//每页条数
 // var encodedList = checkList.value.map(item => encodeURIComponent(item));  // 对每个元素进行 URL 编码
 // var encodedListString = encodedList.join('&');  // 将编码后的元素拼接成字符串，用 & 分隔
 
-//查询所有政策
+//检索方式选择
+let options = ref([
+    {
+        value: 'AND',
+        label: 'AND',
+    },
+    {
+        value: 'OR',
+        label: 'OR',
+    }
+])
+//检索方式选择结果
+let optionValue = ref("AND")
+
+//点击搜索按钮之后 判断检索方式
+//查询所有政策 And 和 Or 方法
 const policyList = async () => {
     let params = {
         pageNum: pageNum.value,
@@ -78,9 +94,11 @@ const policyList = async () => {
         document: search.value.document,
         organ: search.value.organ,
         text: search.value.text,
-        checkList: checkList.value
+        checkList: checkList.value,
+        optionValue: optionValue.value
     }
-    // console.log(checkList.value)
+
+    console.log(params)
     let result = await policyListService(params);
     polices.value = result.data.data.items;
     total.value = result.data.data.total;
@@ -105,6 +123,11 @@ const chakan = (row) => {
     router.push("/policy2");
 }
 
+//二次检索
+const policyListSecond = async () => {
+    let result = await policyListSecondService(search.value.second);
+    polices.value = result.data.data.value;
+}
 </script>
 
 <template>
@@ -115,10 +138,20 @@ const chakan = (row) => {
                     <el-col :span="4">
                         <span>图解政策</span>
                     </el-col>
+
                     <el-col :span="4">
-                        <el-form-item label="政策名称">
-                            <el-input v-model="search.name" placeholder="请输入政策名称" clearable />
-                        </el-form-item>
+                        <el-row>
+                            <el-form-item label="政策名称">
+                                <el-input v-model="search.name" placeholder="请输入政策名称" clearable />
+                            </el-form-item>
+                            <el-form-item label="检索方式">
+                                <el-select v-model="optionValue" placeholder="AND" size="large" style="width: 122px">
+                                    <el-option v-for="item in options" :key="item.value" :label="item.label"
+                                        :value="item.value" />
+                                </el-select>
+                            </el-form-item>
+                        </el-row>
+
                     </el-col>
                     <el-col :span="4">
                         <el-form-item label="发文字号">
@@ -131,13 +164,30 @@ const chakan = (row) => {
                         </el-form-item>
                     </el-col>
                     <el-col :span="4">
-                        <el-form-item label="全文检索">
-                            <el-input v-model="search.text" clearable />
-                        </el-form-item>
+                        <el-row>
+
+                            <el-form-item label="全文检索">
+                                <el-input v-model="search.text" clearable />
+                            </el-form-item>
+
+                            <el-form-item label="二次检索">
+                                <el-input v-model="search.second" clearable />
+                            </el-form-item>
+                        </el-row>
+
                     </el-col>
-                    <el-row>
-                        <el-button type="primary" @click="policyList">搜索</el-button>
-                    </el-row>
+                    <el-col :span="2">
+                        <el-row>
+                            <el-form-item>
+                                <el-button type="primary" @click="policyList">搜索</el-button>
+                            </el-form-item>
+
+                            <el-form-item>
+                                <el-button type="primary" @click="policyListSecond">搜索</el-button>
+                            </el-form-item>
+                        </el-row>
+                    </el-col>
+
                 </el-row>
             </el-header>
             <el-container>
@@ -158,7 +208,7 @@ const chakan = (row) => {
                     </el-checkbox-group>
                 </el-aside>
                 <el-main>
-                    <el-table :data="polices" stripe style="width: 1000px">
+                    <el-table :data="polices" stripe style="width: 1000px;margin-top: 20px;">
                         <el-table-column prop="name" label="政策名称" width="180" show-overflow-tooltip />
                         <el-table-column prop="organ" label="发文机构" width="180" show-overflow-tooltip />
                         <el-table-column prop="viadata" label="颁布日期" width="180" show-overflow-tooltip />
