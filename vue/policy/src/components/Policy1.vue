@@ -100,6 +100,7 @@ const policyList = async () => {
 
     // console.log(params)
     // let result = await policyListService(params);
+    //使用elasticsearch查询
     let result = await getFirstListApi(params);
     polices.value = result.data.data.items;
     console.log(polices.value)
@@ -131,10 +132,6 @@ const policyListSecond = async () => {
     polices.value = result.data.data.value;
 }
 
-const highlightText = (text) => {
-    // 假设我们要将 "红色" 文本包裹成 <em> 标签
-    return text.replace(/红色/g, '<em style="color: red;">红色</em>');
-}
 </script>
 
 <template>
@@ -219,7 +216,7 @@ const highlightText = (text) => {
                         <!-- <el-table-column prop="name" label="政策名称" width="180" show-overflow-tooltip /> -->
                         <el-table-column label="政策名称" width="180" show-overflow-tooltip>
                             <template #default="{ row }">
-                                <div v-html="highlightText(row.name)"></div>
+                                <div v-html="row.name"></div>
                             </template>
                         </el-table-column>
                         <el-table-column prop="organ" label="发文机构" width="180" show-overflow-tooltip />
@@ -242,8 +239,4 @@ const highlightText = (text) => {
     </div>
 </template>
 
-<style scoped>
-em {
-    color: red;
-}
-</style>
+<style scoped></style>
