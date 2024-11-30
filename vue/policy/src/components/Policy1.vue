@@ -98,9 +98,10 @@ const policyList = async () => {
         optionValue: optionValue.value
     }
 
-    console.log(params)
+    // console.log(params)
     let result = await policyListService(params);
     polices.value = result.data.data.items;
+    console.log(polices.value)
     total.value = result.data.data.total;
 }
 policyList();
