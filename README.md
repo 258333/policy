@@ -1,64 +1,20 @@
-## 博客介绍
 
-<p align="center">
-  <a href="https://www.kuailemao.xyz">
-    <img src="https://foruda.gitee.com/avatar/1667975309022664009/11937114_kuailemao_1667975308.png" alt="Ruyu的个人博客" style="border-radius: 50%;">
-  </a>
-</p>
+## 项目介绍
 
-<p align="center">
-  基于 SpringBoot3 + Vue3 开发前后端分离个人博客系统
-</p>
-
-## 项目部分截图
-
-### 前台
-
-![前台首页](https://gitee.com/kuailemao/ruyu-blog/raw/master/img/%E5%89%8D%E5%8F%B0%E9%A6%96%E9%A1%B5.jpg)
-
-![前台中心](https://gitee.com/kuailemao/ruyu-blog/raw/master/img/%E5%89%8D%E5%8F%B0%E4%B8%AD%E5%BF%83.jpg)
-
-![前台文章](https://gitee.com/kuailemao/ruyu-blog/raw/master/img/%E5%89%8D%E5%8F%B0%E6%96%87%E7%AB%A0.jpg)
-
-### 后台
-
-![后台发布文章](https://gitee.com/kuailemao/ruyu-blog/raw/master/img/%E5%90%8E%E5%8F%B0%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0.jpg)
-
-![后台文章列表](https://gitee.com/kuailemao/ruyu-blog/raw/master/img/%E5%90%8E%E5%8F%B0%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8.jpg)
-
-## 在线体验地址
-**注意：在线预览地址可能与仓库代码不同步，以仓库为主**
-> 服务器比较垃圾，随机可能崩掉，发现了会进行维护，且看且珍惜
-
-**前台博客：** kuailemao.xyz
-
-**后台管理：** blog.kuailemao.xyz
-
-**测试账号：** Test，**密码：** 123456
-
-**ps:** 测试账号功能不代表系统所有功能，有些权限过高模块不方便在线展示
-
-**Gitee地址：** https://gitee.com/kuailemao/ruyu-blog
-
-**Github地址：** https://github.com/kuailemao/Ruyu-Blog
-
-**B站视频介绍：** https://www.bilibili.com/video/BV181hNeiEDb/?vd_source=ff1e09f5473622b91dc0efc92418b537#reply112716668797561
-
-**接口文档：** [API文档 (kuailemao.xyz)](http://kuailemao.xyz:8088/doc.html#/home)
-
-**欢迎各位提交 PR ，一起改进项目**
+科技政策查询系统 AND查询 OR查询 分页 以及二次检索 [![image](https://private-user-images.githubusercontent.com/149766839/391221149-6354a651-c97e-44ca-9bb1-d4821321083d.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzI5NTM3MDYsIm5iZiI6MTczMjk1MzQwNiwicGF0aCI6Ii8xNDk3NjY4MzkvMzkxMjIxMTQ5LTYzNTRhNjUxLWM5N2UtNDRjYS05YmIxLWQ0ODIxMzIxMDgzZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMTMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTEzMFQwNzU2NDZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1lNjQzYjVlNWY3YWZkNGE2Y2YyMjdhYjgyMjQ2YTQ1NGZiM2QwNDIzMmMyMTJiYTg2NDQzYjYyODM4MzU3NTk2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.sHunBUVmdq9QD-CFxqOaqEXUVbwcQRcy5AOPF7IQ_6A)](https://private-user-images.githubusercontent.com/149766839/391221149-6354a651-c97e-44ca-9bb1-d4821321083d.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzI5NTM3MDYsIm5iZiI6MTczMjk1MzQwNiwicGF0aCI6Ii8xNDk3NjY4MzkvMzkxMjIxMTQ5LTYzNTRhNjUxLWM5N2UtNDRjYS05YmIxLWQ0ODIxMzIxMDgzZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMTMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTEzMFQwNzU2NDZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1lNjQzYjVlNWY3YWZkNGE2Y2YyMjdhYjgyMjQ2YTQ1NGZiM2QwNDIzMmMyMTJiYTg2NDQzYjYyODM4MzU3NTk2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.sHunBUVmdq9QD-CFxqOaqEXUVbwcQRcy5AOPF7IQ_6A) 上述是大二时完成的
+大三了解到了Elasticsearch在这个上面对它进行了一些简单的应用 ![image](https://private-user-images.githubusercontent.com/149766839/391221294-cf0a0776-7a2b-45f0-9302-a57c6cda5d3f.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzI5NTM3MDYsIm5iZiI6MTczMjk1MzQwNiwicGF0aCI6Ii8xNDk3NjY4MzkvMzkxMjIxMjk0LWNmMGEwNzc2LTdhMmItNDVmMC05MzAyLWE1N2M2Y2RhNWQzZi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMTMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTEzMFQwNzU2NDZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00NzVlODdlYjI1YjAxZWE5MzliMWM3OGQ1OGRkNzY4N2I0MGU0M2EwNjNjNzU5NmE0MTBkZWEwNzU1MGU5OTM4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.7d8t_aQMqojmQRkxxDD9N_RqAWEgUCZCPEVJ-pnsbS0)
 
 ## 运行环境
 
 ### 后端：
 
-|   名称   | 环境  |
-| :------: | :---: |
-|  MySQL   |  8.0  |
-|  Redis   | 7.2.3 |
-| RabbitMQ | 最新  |
-|  minio   | 最新  |
-|   JDK    |  17   |
+|     名称      | 环境  |
+| :-----------: | :---: |
+|     MySQL     |  8.0  |
+|     Redis     | 7.2.3 |
+|               |       |
+| Elasticsearch |       |
+|      JDK      |  17   |
 
 **前端：**
 
@@ -66,9 +22,6 @@
 | :--: | :-----: |
 | pnpm | 8.12.0  |
 | node | 16.17.0 |
-
-## 项目部署
-**部署文档地址：** https://kuailemao.xyz/article/48
 
 ## 项目特点
 
@@ -100,69 +53,9 @@
 
 **其他：** Gitee、Github 第三方登录
 
-## 运行环境
-
-### 推荐
-
-> 最低 2 核 4 G
-
-**我的：** 腾讯云 2 核 2 G  4 M * 2  （穷）
-
-**系统：** **OpenCloudOS**
-
-**前端：** Docker   **后端：** jenkins
-
-## 后续计划（有空）
-
-> 白天上班，只能抽空优化项目，还望理解
-
-- [x] 持续优化前台响应式
-- [x] 新增用户设置、支持修改邮箱、头像、昵称...
-- [x] 重构移动端首页
-- [x] 重构移动端文章页面
-- [x] 重构各种功能邮箱提醒(v1.4.1)
-- [ ] 实现后台导入导出
-- [ ] 实现前台搜索
-- [x] 前台添加更加有趣的效果
-- [x] 前台音乐播放器
-- [ ] 后台图片资源管理模块
-- [x] 找出并修复一些隐藏的bug(持续完善)
-- [x] 前端响应速度优化到网络正常的情况下5秒以内
-- [x] 实现黑名单管理机制
-- [ ] 后台首页数据大屏
-- [ ] 后台图片资源管理
-- [ ] 博客app版本
-- [ ] 博客小程序版本
-
 ## 项目总结
 
 整个项目花费了大量的时间与精力（尤其是前台前端），作者独自手写了三个月左右，除了后台的页面使用了一个后台框架模板外，其他的全部一点一点手写（包括后台的全部模块），这也是我第一次正式的开源一个项目（莫名成就感），虽然但是这个项目我并不觉得很完美，一部分是因为我自己技术有限的原因（主后端的全栈选手），一部分是项目还没经过时间的拷打，开发过程中也参考了很多优秀的项目，在这里感谢大家的开源项目，希望我的项目也能给你带来收获。
 
-### 鸣谢项目：
 
-* [mrzym-blog](https://gitee.com/mrzym/stable-version-of-blog)
-
-* [掐指yi算’逢考必过-Blog](https://gitee.com/wu_shengdong/blog)
-
-* [hexo-theme-butterfly](https://github.com/jerryc127/hexo-theme-butterfly)
-
-* [Antdv Pro](https://docs.antdv-pro.com/)
-
-* [md-editor-v3](https://imzbf.github.io/md-editor-v3/zh-CN/index)
-
-* [vue-danmaku](https://github.com/hellodigua/vue-danmaku)
-
-* ……
-
-## 最后
-
-**该文档初次编写可能存在一些问题，如果发现，后面会进行修改提交**
-
-**该项目交流群：** （有什么不懂的可以提问）
-
-**QQ：** 635887836
-
-**二维码：**
-
-<img src="https://gitee.com/kuailemao/ruyu-blog/raw/master/img/Ruyu开源博客交流群群聊二维码.png" />
 
