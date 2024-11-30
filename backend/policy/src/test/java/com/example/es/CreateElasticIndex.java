@@ -3,6 +3,7 @@ package com.example.es;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.pojo.PageBean;
 import com.example.pojo.Policy;
 import com.example.pojo.PolicyDoc;
 import com.example.service.PolicyService;
@@ -36,7 +37,7 @@ import java.util.List;
 @SpringBootTest(properties = "spring.profiles.active=local")
 @Slf4j
 @RequiredArgsConstructor
-public class createElasticIndex {
+public class CreateElasticIndex {
 
     private RestHighLevelClient client;
     @Autowired
@@ -114,17 +115,18 @@ public class createElasticIndex {
     void testLoadPolicyDocs() throws IOException {
         // 分页查询商品数据
         int pageNo = 1;
-        int size = 1000;
+        int size = 10;
         while (true) {
-            Page<Policy> page = policyService.lambdaQuery().page(new Page<Policy>(pageNo, size));
+//            Page<Policy> page = policyService.lambdaQuery().page(new Page<Policy>(pageNo, size));
+            PageBean<Policy> list = policyService.list(pageNo, size, null, null, null, null, List.of(), "AND");
             // 非空校验
-            List<Policy> policies = page.getRecords();
+            List<Policy> policies = list.getItems();
             if (CollUtils.isEmpty(policies)) {
                 return;
             }
             log.info("加载第{}页数据，共{}条", pageNo, policies.size());
 //            System.err.println("加载第" + pageNo + "页数据，共" + policies.size() + "条");
-            // 1.创建Request
+//             1.创建Request
             BulkRequest request = new BulkRequest("policy");
             // 2.准备参数，添加多个新增的Request
             for (Policy policy : policies) {

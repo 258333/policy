@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.mapper.PolicyMapper;
 import com.example.pojo.PageBean;
@@ -15,8 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-
-
 public class PolicyServiceImpl extends ServiceImpl<PolicyMapper,Policy> implements PolicyService {
     @Autowired
     private PolicyMapper policyMapper;
@@ -68,4 +67,5 @@ public class PolicyServiceImpl extends ServiceImpl<PolicyMapper,Policy> implemen
     public List<Map<String, Object>> listSecond(String second) {
         return null;
     }
+
 }
