@@ -15,3 +15,8 @@ export const typeListService = () => {
 export const policyListSecondService = (second) => {
     return request.get('/policy/' + second)
 }
+
+//使用es工具进行检索
+export const getFirstListApi = (params) => {
+    return request.post('/es/getFirstList', params)
+}
