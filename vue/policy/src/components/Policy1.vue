@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
-import { policyListService, typeListService, policyListSecondService } from '@/api/policy';
+import { policyListService, typeListService, policyListSecondService, getFirstListApi } from '@/api/policy';
 import { usePolicyStore } from '@/stores/policy';
 import { useRouter } from 'vue-router'
 
@@ -99,7 +99,8 @@ const policyList = async () => {
     }
 
     // console.log(params)
-    let result = await policyListService(params);
+    // let result = await policyListService(params);
+    let result = await getFirstListApi(params);
     polices.value = result.data.data.items;
     console.log(polices.value)
     total.value = result.data.data.total;
@@ -128,6 +129,11 @@ const chakan = (row) => {
 const policyListSecond = async () => {
     let result = await policyListSecondService(search.value.second);
     polices.value = result.data.data.value;
+}
+
+const highlightText = (text) => {
+    // 假设我们要将 "红色" 文本包裹成 <em> 标签
+    return text.replace(/红色/g, '<em style="color: red;">红色</em>');
 }
 </script>
 
@@ -210,7 +216,12 @@ const policyListSecond = async () => {
                 </el-aside>
                 <el-main>
                     <el-table :data="polices" stripe style="width: 1000px;margin-top: 20px;">
-                        <el-table-column prop="name" label="政策名称" width="180" show-overflow-tooltip />
+                        <!-- <el-table-column prop="name" label="政策名称" width="180" show-overflow-tooltip /> -->
+                        <el-table-column label="政策名称" width="180" show-overflow-tooltip>
+                            <template #default="{ row }">
+                                <div v-html="highlightText(row.name)"></div>
+                            </template>
+                        </el-table-column>
                         <el-table-column prop="organ" label="发文机构" width="180" show-overflow-tooltip />
                         <el-table-column prop="viadata" label="颁布日期" width="180" show-overflow-tooltip />
                         <el-table-column prop="type" label="政策分类" width="180" show-overflow-tooltip />
@@ -230,3 +241,9 @@ const policyListSecond = async () => {
         </el-container>
     </div>
 </template>
+
+<style scoped>
+em {
+    color: red;
+}
+</style>
